@@ -1,4 +1,53 @@
-# Getting Started with Create React App
+# Issue
+This repository contains a standard create-react-app application that was ejected in order to add the configuration necessary to support developing with InversifyJS in TypeScript.
+Sadly it does not work. Even if Babel is able to correctly build the code, TSC complains:
+
+```
+Compiled with problems:
+
+ERROR in ./src/di/entities.ts 25:108-114
+export 'Weapon' (imported as 'Weapon') was not found in './interfaces' (module has no exports)
+
+ERROR in ./src/di/entities.ts 25:142-148
+export 'Weapon' (imported as 'Weapon') was not found in './interfaces' (module has no exports)
+
+ERROR in ./src/di/entities.ts 25:157-172
+export 'ThrowableWeapon' (imported as 'ThrowableWeapon') was not found in './interfaces' (module has no exports)
+
+ERROR in ./src/di/entities.ts 25:200-215
+export 'ThrowableWeapon' (imported as 'ThrowableWeapon') was not found in './interfaces' (module has no exports)
+```
+
+What it is even more fun is that if I copy the same code in the __di__ folder  and the same tsconfig and pass it to tsc, everything works, but inside cra, it fails.
+
+The modifications done from the standard CRA settings are in the tsconfig.json 
+```
+"experimentalDecorators": true,
+"emitDecoratorMetadata": true
+```
+and added "es6" in the lib section.
+
+For Babel the changes are in the babel section of the package.json file:
+
+```
+"plugins": [
+      "babel-plugin-transform-typescript-metadata",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
+```
+# Create React App readme
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

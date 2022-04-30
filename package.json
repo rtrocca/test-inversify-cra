@@ -142,13 +142,7 @@
   },
   "babel": {
     "presets": [
-      "react-app",
-      [
-        "@babel/preset-typescript",
-        {
-          "onlyRemoveTypeImports": true
-        }
-      ]
+      "react-app"
     ],
     "plugins": [
       "babel-plugin-transform-typescript-metadata",
