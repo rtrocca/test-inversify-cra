@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
+
 import './App.css';
 
+import {myContainer} from './di/di.config';
+import { Warrior } from './di/interfaces';
+import { TYPES } from './di/types';
+
 function App() {
+
+  const [warrior, setWarrior] = useState<Warrior>();
+
+  useEffect( () => {
+    const ninja = myContainer.get<Warrior>(TYPES.Warrior);
+    setWarrior(ninja);
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      { warrior && <p> My Warrior {warrior?.fight()} and {warrior?.sneak()}</p>}
     </div>
   );
 }
