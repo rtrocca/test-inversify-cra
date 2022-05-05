@@ -1,6 +1,6 @@
 import { injectable, inject } from 'inversify';
 import 'reflect-metadata';
-import { Weapon, ThrowableWeapon, Warrior } from './interfaces';
+import type { Weapon, ThrowableWeapon, Warrior } from './interfaces';
 import { TYPES } from './types';
 
 @injectable()
